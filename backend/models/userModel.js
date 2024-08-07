@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const userSchema = mongoose.Schema(
+
+const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -16,7 +17,6 @@ const userSchema = mongoose.Schema(
     },
     pic: {
       type: String,
-      required: true,
     },
   },
   {
@@ -24,5 +24,6 @@ const userSchema = mongoose.Schema(
   }
 );
 
-const User = mongoose.model("user", userSchema);
-module.exports = User;
+const User = mongoose.model("User", userSchema); // Capitalize model name
+
+module.exports = User ; 

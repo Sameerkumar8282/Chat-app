@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
-const chatSchema = mongoose.Schema(
+
+const chatSchema = new mongoose.Schema(
   {
-    chatName: { type: String, trim: true },
+    chatName: {
+      type: String,
+      trim: true,
+      required: true, // Make chatName required
+    },
     isGroupChat: {
       type: Boolean,
       default: false,
@@ -10,6 +15,7 @@ const chatSchema = mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
+        required: true, // Ensure that users array is always present
       },
     ],
     lastMessage: {
@@ -26,5 +32,6 @@ const chatSchema = mongoose.Schema(
   }
 );
 
-const Chats = mongoose.model("Chats",chatSchema);
-module.exports = Chats;
+const Chat = mongoose.model("Chat", chatSchema);
+
+module.exports = Chat;
